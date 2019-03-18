@@ -29,6 +29,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     var service:Service!
     var statusResult:Status!
+    var serviceMenId:Int!
     
     let pickerData = ["Pending ︽","finished"]
     
@@ -46,6 +47,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         serviceLocation.text = service.service_location
         serviceUserID.text = String(service.user_id)
         serviceDeviceID.text = String(service.device_id)
+        serviceMenId = service.service_men_id
         
         serviceStatusPicker.delegate = self
         serviceStatusPicker.dataSource = self
@@ -68,11 +70,15 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         getServiceStatus(id: String(service!.id), rf_id: "orogh2i3792gwo") { (result) in
             self.statusResult = result
+            
             if result.status == 200 {
                 print("Status update successful\(result.status)")
             } else{
                 print("Pls Try again\(result.status)")
             }
+            
+            //guard let services = segue.source as? ServiceTableViewController else { return }
+            
         }
     }
     

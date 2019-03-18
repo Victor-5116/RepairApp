@@ -165,4 +165,14 @@ class ServiceTableViewController: UITableViewController {
         return false
     }
 
+    @IBAction func didUnwindFromServiceDetailsVC(_ sender: UIStoryboardSegue) {
+        guard let detailsVC = sender.source as? ServiceDetailsViewController else { return }
+        
+        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
+            self.serviceArray = result.data
+            self.tableView.reloadData()
+        }
+        //tableView.reloadData()
+        tableView.tableFooterView = UIView()
+    }
 }
