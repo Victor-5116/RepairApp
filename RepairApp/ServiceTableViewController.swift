@@ -46,11 +46,14 @@ class ServiceTableViewController: UITableViewController {
             self.serviceArray = result.data
             self.tableView.reloadData()
         }
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
+            self.serviceArray = result.data
+            self.tableView.reloadData()
+        }
     }
     
     func getServicesByServiceMen(serviceMenId:Int, completion: @escaping((ReturnedJsonData) -> Void)) {
