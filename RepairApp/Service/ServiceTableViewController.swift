@@ -42,10 +42,10 @@ class ServiceTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
-            self.serviceArray = result.data
-            self.tableView.reloadData()
-        }
+//        getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
+//            self.serviceArray = result.data
+//            self.tableView.reloadData()
+//        }
         //tableView.tableFooterView = UIView()
     }
 
