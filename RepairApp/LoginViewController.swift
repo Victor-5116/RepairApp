@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         let loginInput = ["email": email, "password": password]
         let loginInputData = try! JSONSerialization.data(withJSONObject: loginInput, options: [])
         
-        guard let url = URL(string: "http://3.0.10.249:3001/loginServiceMen") else {
+        guard let url = URL(string: "http://3.0.10.249:3001/loginUser") else {
             return
         }
         

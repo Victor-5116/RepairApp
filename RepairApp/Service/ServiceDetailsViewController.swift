@@ -68,7 +68,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         
-        getServiceStatus(id: String(service!.id), rf_id: "orogh2i3792gwo") { (result) in
+        getServiceStatus(id: String(service!.id), rf_id: "iw728rj823") { (result) in
             self.statusResult = result
             
             if result.status == 200 {
