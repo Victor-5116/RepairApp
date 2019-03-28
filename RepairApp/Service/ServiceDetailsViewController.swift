@@ -21,17 +21,21 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var serviceDate: UILabel!
     @IBOutlet weak var serviceTime: UILabel!
     @IBOutlet weak var serviceQueue: UILabel!
-    @IBOutlet weak var serviceStatusPicker: UIPickerView!
     @IBOutlet weak var serviceManID: UILabel!
     @IBOutlet weak var serviceLocation: UILabel!
     @IBOutlet weak var serviceUserID: UILabel!
     @IBOutlet weak var serviceDeviceID: UILabel!
+    @IBOutlet weak var serviceStatus: UITextField!
+    
     
     var service:Service!
     var statusResult:Status!
     var serviceMenId:Int!
     
-    let pickerData = ["Pending ︽","finished"]
+    let pickerData = ["Pending","finished"]
+    
+    //private var datePicker: UIDatePicker?
+    private var statusPicker: UIPickerView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,38 +51,39 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         serviceLocation.text = service.service_location
         serviceUserID.text = String(service.user_id)
         serviceDeviceID.text = String(service.device_id)
+        serviceStatus.text = String(service.status)
         serviceMenId = service.service_men_id
-        
-        serviceStatusPicker.delegate = self
-        serviceStatusPicker.dataSource = self
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if(service.status == "Pending") {
-            serviceStatusPicker.selectRow(0, inComponent: 0, animated: false)
+            serviceStatus.textColor = UIColor.orange
+            statusPicker = UIPickerView()
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(gestureRecognizer:)))
+            view.addGestureRecognizer(tapGesture)
+            statusPicker?.dataSource = self
+            statusPicker?.delegate = self
+            serviceStatus.inputView = statusPicker
         } else {
-            serviceStatusPicker.selectRow(1, inComponent: 0, animated: false)
+            serviceStatus.textColor = UIColor.green
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         
         getServiceStatus(id: String(service!.id), rf_id: "iw728rj823") { (result) in
             self.statusResult = result
-            
+
             if result.status == 200 {
                 print("Status update successful\(result.status)")
             } else{
                 print("Pls Try again\(result.status)")
             }
-            
-            //guard let services = segue.source as? ServiceTableViewController else { return }
-            
         }
     }
     
@@ -124,12 +129,15 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        serviceStatus.text = pickerData[row]
+        view.endEditing(true)
     }
     
 //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        return pickerData[row]
 //    }
+    
+    //fileprivate var alertStyle: UIAlertController.Style = .actionSheet
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel: UILabel? = (view as? UILabel)
@@ -138,17 +146,18 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
             pickerLabel?.font = UIFont(name: "System", size: 11)
             pickerLabel?.textAlignment = .center
         }
-        
+
         pickerLabel?.text = pickerData[row]
-    
+
         if(service.status == "Pending") {
             pickerLabel?.textColor = UIColor.orange
         } else {
             pickerView.selectRow(1, inComponent: 0, animated: false)
             pickerLabel?.textColor = UIColor.green
         }
-        
+
         return pickerLabel!
+ 
     }
     /*
     // MARK: - Navigation

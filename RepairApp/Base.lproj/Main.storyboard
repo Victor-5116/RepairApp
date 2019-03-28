@@ -393,9 +393,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uK-95-uti">
+                                            <textField opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlz-X6-n6C">
                                                 <rect key="frame" x="192" y="0.0" width="182" height="40"/>
-                                            </pickerView>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnB-1U-uDF">
@@ -463,7 +466,7 @@
                         <outlet property="serviceManID" destination="KLl-jQ-53t" id="zf3-Yz-HHu"/>
                         <outlet property="serviceName" destination="gXt-8K-WKR" id="JVC-Xs-VX1"/>
                         <outlet property="serviceQueue" destination="ARg-fZ-v7V" id="gBQ-d5-AdE"/>
-                        <outlet property="serviceStatusPicker" destination="8uK-95-uti" id="LLv-tx-8aq"/>
+                        <outlet property="serviceStatus" destination="vlz-X6-n6C" id="rVJ-OF-sjX"/>
                         <outlet property="serviceTime" destination="q3x-tA-LJ6" id="OYd-MP-7Cx"/>
                         <outlet property="serviceUserID" destination="gV4-je-typ" id="d6K-CR-JlO"/>
                     </connections>
