@@ -76,7 +76,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         
-        getServiceStatus(id: String(service!.id), rf_id: "iw728rj823") { (result) in
+        updateServiceStatus(id: String(service!.id), rf_id: "iw728rj823") { (result) in
             self.statusResult = result
 
             if result.status == 200 {
@@ -87,7 +87,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
     
-    func getServiceStatus(id: String, rf_id: String, completion: @escaping((Status) -> Void)) {
+    func updateServiceStatus(id: String, rf_id: String, completion: @escaping((Status) -> Void)) {
         
         let httpHeader = ["id": id]
         let httpBody = ["rf_id": rf_id]

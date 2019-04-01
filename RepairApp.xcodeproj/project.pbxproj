@@ -14,9 +14,9 @@
 		57811A9B2223C06600855459 /* RepairApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57811A992223C06600855459 /* RepairApp.xcdatamodeld */; };
 		57811A9D2223C06700855459 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57811A9C2223C06700855459 /* Assets.xcassets */; };
 		57811AA02223C06700855459 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57811A9E2223C06700855459 /* LaunchScreen.storyboard */; };
+		578E120B22523CDF00E59749 /* UserCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578E120A22523CDF00E59749 /* UserCreateViewController.swift */; };
 		57A049FE2227D72A00F1F9C8 /* ServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A049FD2227D72A00F1F9C8 /* ServiceDetailsViewController.swift */; };
 		57B4B996224BAEEA00CBE762 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B4B995224BAEEA00CBE762 /* UserTableViewController.swift */; };
-		57B4B99A224BC01800CBE762 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 57B4B999224BC01800CBE762 /* Source */; };
 		57D1F0C22226B01200EAE7E2 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D1F0C12226B01200EAE7E2 /* ServiceTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +30,9 @@
 		57811A9C2223C06700855459 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57811A9F2223C06700855459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57811AA12223C06700855459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578E120A22523CDF00E59749 /* UserCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateViewController.swift; sourceTree = "<group>"; };
 		57A049FD2227D72A00F1F9C8 /* ServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		57B4B995224BAEEA00CBE762 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
-		57B4B999224BC01800CBE762 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		57D1F0C12226B01200EAE7E2 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +50,6 @@
 		57811A862223C06600855459 = {
 			isa = PBXGroup;
 			children = (
-				57B4B999224BC01800CBE762 /* Source */,
 				57811A912223C06600855459 /* RepairApp */,
 				57811A902223C06600855459 /* Products */,
 			);
@@ -84,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				57B4B995224BAEEA00CBE762 /* UserTableViewController.swift */,
+				578E120A22523CDF00E59749 /* UserCreateViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -159,7 +159,6 @@
 				57811AA02223C06700855459 /* LaunchScreen.storyboard in Resources */,
 				57811A9D2223C06700855459 /* Assets.xcassets in Resources */,
 				57811A982223C06600855459 /* Main.storyboard in Resources */,
-				57B4B99A224BC01800CBE762 /* Source in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +172,7 @@
 				57811A952223C06600855459 /* LoginViewController.swift in Sources */,
 				57811A9B2223C06600855459 /* RepairApp.xcdatamodeld in Sources */,
 				57D1F0C22226B01200EAE7E2 /* ServiceTableViewCell.swift in Sources */,
+				578E120B22523CDF00E59749 /* UserCreateViewController.swift in Sources */,
 				5777F8952225228200F6F0CA /* ServiceTableViewController.swift in Sources */,
 				57B4B996224BAEEA00CBE762 /* UserTableViewController.swift in Sources */,
 				57811A932223C06600855459 /* AppDelegate.swift in Sources */,
