@@ -43,7 +43,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         // Do any additional setup after loading the view.
         serviceID.text = String(service.id)
         serviceName.text = service.name
-        serviceCategory.text = service.category
+        serviceCategory.text = String(service.category)
         serviceDate.text = service.date
         serviceTime.text = service.time
         serviceQueue.text = service.queue_no

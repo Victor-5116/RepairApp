@@ -17,7 +17,7 @@ struct ReturnedJsonData: Decodable {
 struct Service: Decodable {
     let id: Int
     let name: String
-    let category: String
+    let category: Int
     let date: String
     let time: String
     let queue_no: String
@@ -31,6 +31,7 @@ struct Service: Decodable {
 class ServiceTableViewController: UITableViewController {
 
     var serviceMenId = -1
+    var token = ""
     var serviceArray = [Service]()
     var service:Service!
 
@@ -49,6 +50,7 @@ class ServiceTableViewController: UITableViewController {
         //tableView.tableFooterView = UIView()
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
             self.serviceArray = result.data
@@ -58,7 +60,7 @@ class ServiceTableViewController: UITableViewController {
     
     func getServicesByServiceMen(serviceMenId:Int, completion: @escaping((ReturnedJsonData) -> Void)) {
         
-        let httpHeader = ["service_men_id": String(serviceMenId)]
+        let httpHeader = ["service_men_id": String(serviceMenId), "Authorization": "Bear \(token)"]
         guard let url = URL(string: "http://3.0.10.249:3001/getServicesByServiceMen") else {
             return
         }

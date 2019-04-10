@@ -11,6 +11,7 @@ import UIKit
 struct Login: Decodable {
     let status: Int
     let message: String
+    let token: String
     let id: Int
 }
 class LoginViewController: UIViewController {
@@ -40,6 +41,7 @@ class LoginViewController: UIViewController {
         let nagVC = segue.destination as? UINavigationController
         let serviceVC = nagVC?.viewControllers.first as! ServiceTableViewController
         serviceVC.serviceMenId = result.id
+        serviceVC.token = result.token
     }
     
     override func viewDidLoad() {
@@ -52,7 +54,7 @@ class LoginViewController: UIViewController {
         let loginInput = ["email": email, "password": password]
         let loginInputData = try! JSONSerialization.data(withJSONObject: loginInput, options: [])
         
-        guard let url = URL(string: "http://3.0.10.249:3001/loginUser") else {
+        guard let url = URL(string: "http://3.0.10.249:3001/loginServiceMen") else {
             return
         }
         
