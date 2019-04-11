@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
         let serviceVC = nagVC?.viewControllers.first as! ServiceTableViewController
         serviceVC.serviceMenId = result.id
         serviceVC.token = result.token
+        UserDefaults.standard.set(result.token, forKey: "TOKEN")
     }
     
     override func viewDidLoad() {

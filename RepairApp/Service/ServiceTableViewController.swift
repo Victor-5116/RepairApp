@@ -162,6 +162,7 @@ class ServiceTableViewController: UITableViewController {
         
         let vc = segue.destination as! ServiceDetailsViewController
         vc.service = self.service
+        vc.token = self.token
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }

@@ -31,8 +31,9 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     var service:Service!
     var statusResult:Status!
     var serviceMenId:Int!
+    var token = ""
     
-    let pickerData = ["Pending","finished"]
+    let pickerData = ["Pending", "In Progress", "Completed"]
     
     //private var datePicker: UIDatePicker?
     private var statusPicker: UIPickerView?
@@ -57,8 +58,12 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if(service.status == "Pending") {
-            serviceStatus.textColor = UIColor.orange
+        if(service.status == "Pending" || service.status == "In Progress") {
+            if(service.status == "Pending") {
+                serviceStatus.textColor = UIColor.red
+            } else {
+                serviceStatus.textColor = UIColor.orange
+            }
             statusPicker = UIPickerView()
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(gestureRecognizer:)))
             view.addGestureRecognizer(tapGesture)
@@ -76,21 +81,22 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         
-        updateServiceStatus(id: String(service!.id), rf_id: "iw728rj823") { (result) in
+        updateServiceStatus(id: String(service!.id), rf_id: "orogh2i3792gwo", status: serviceStatus.text!) { (result) in
             self.statusResult = result
-
+            
             if result.status == 200 {
                 print("Status update successful\(result.status)")
             } else{
                 print("Pls Try again\(result.status)")
             }
         }
+        //print(UserDefaults.standard.object(forKey: "TOKEN"))
     }
     
-    func updateServiceStatus(id: String, rf_id: String, completion: @escaping((Status) -> Void)) {
+    func updateServiceStatus(id: String, rf_id: String, status: String, completion: @escaping((Status) -> Void)) {
         
-        let httpHeader = ["id": id]
-        let httpBody = ["rf_id": rf_id]
+        let httpHeader = ["id": id, "Authorization": "Bear \(token)"]
+        let httpBody = ["rf_id": rf_id, "status": status]
         let httpBodyJson = try! JSONSerialization.data(withJSONObject: httpBody, options: [])
         
         guard let url = URL(string: "http://3.0.10.249:3001/updateServiceStatus") else {
@@ -150,7 +156,10 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
         pickerLabel?.text = pickerData[row]
 
         if(service.status == "Pending") {
+            pickerLabel?.textColor = UIColor.red
+        } else if(service.status == "In Progress"){
             pickerLabel?.textColor = UIColor.orange
+            
         } else {
             pickerView.selectRow(1, inComponent: 0, animated: false)
             pickerLabel?.textColor = UIColor.green

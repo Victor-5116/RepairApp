@@ -33,8 +33,10 @@ class ServiceTableViewCell: UITableViewCell {
         lblCategory.text = "Category: \(service.category)"
         lblStatus.text = service.status
         if(service.status == "Pending") {
+            lblStatus.textColor = UIColor.red
+        } else if(service.status == "In Progress"){
             lblStatus.textColor = UIColor.orange
-        }else if(service.status == "finished"){
+        } else {
             lblStatus.textColor = UIColor.green
         }
     }
