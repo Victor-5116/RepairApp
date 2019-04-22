@@ -52,7 +52,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hsumon.1740@gmail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-OF-7rv" userLabel="txtEmail">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaw@mail.com" borderStyle="roundedRect" placeholder="Enter your email address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-OF-7rv" userLabel="txtEmail">
                                                 <rect key="frame" x="106.5" y="0.0" width="267.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="267.5" id="7yw-RF-BLr"/>
@@ -78,7 +78,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zawzaw" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-ff-QZx" userLabel="txtPassword">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zaw12345" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-ff-QZx" userLabel="txtPassword">
                                                 <rect key="frame" x="109" y="0.0" width="265" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -95,7 +95,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOO-Pn-q5s">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qOO-Pn-q5s">
                                                 <rect key="frame" x="325" y="0.0" width="51" height="21"/>
                                             </switch>
                                         </subviews>
@@ -109,7 +109,6 @@
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="btnLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4JJ-64-cF1"/>
-                                            <segue destination="3Vo-PX-gQy" kind="presentation" identifier="segueLoginToService" id="tfu-Ii-RRq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -139,13 +138,16 @@
                     </view>
                     <connections>
                         <outlet property="lblErrorMessage" destination="woT-LQ-Ii9" id="Eqh-G0-B0Z"/>
+                        <outlet property="swtUserMode" destination="qOO-Pn-q5s" id="3eg-Ad-IRj"/>
                         <outlet property="txtEmail" destination="hoj-OF-7rv" id="vjk-zX-Twh"/>
                         <outlet property="txtPassword" destination="vZc-ff-QZx" id="6fY-FE-wty"/>
+                        <segue destination="3Vo-PX-gQy" kind="show" identifier="segueToServiceMen" id="a47-ru-8c0"/>
+                        <segue destination="6wQ-sb-8vY" kind="show" identifier="segueToUser" id="hzk-VX-Ql6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1652.1739130434785" y="150.66964285714286"/>
+            <point key="canvasLocation" x="-2175" y="498"/>
         </scene>
         <!--Services-->
         <scene sceneID="811-gE-TbU">
@@ -156,7 +158,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ServiceCell" rowHeight="69" id="DVj-zr-4dB" customClass="ServiceTableViewCell" customModule="RepairApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="serviceMenCell" rowHeight="69" id="DVj-zr-4dB" customClass="ServiceTableViewCell" customModule="RepairApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DVj-zr-4dB" id="oUB-SF-BJJ">
@@ -204,7 +206,7 @@
                                     <outlet property="lblCategory" destination="txA-Hc-VeL" id="Ihy-tO-c9s"/>
                                     <outlet property="lblServiceName" destination="M8o-af-h1e" id="Pai-s4-bx9"/>
                                     <outlet property="lblStatus" destination="MEb-Wx-FWp" id="D7t-vz-yjJ"/>
-                                    <segue destination="eBN-rm-jJt" kind="show" identifier="segueServiceToDetails" id="r2c-ER-pGm"/>
+                                    <segue destination="eBN-rm-jJt" kind="show" identifier="segueServiceMenToDetails" id="r2c-ER-pGm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -519,20 +521,20 @@
             </objects>
             <point key="canvasLocation" x="-762.31884057971024" y="150.66964285714286"/>
         </scene>
-        <!--Table View Controller-->
+        <!--User Table View Controller-->
         <scene sceneID="ohD-JG-NnB">
             <objects>
-                <tableViewController id="4xj-ov-X8y" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v5y-fK-FDZ">
+                <tableViewController id="4xj-ov-X8y" customClass="UserTableViewController" customModule="RepairApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="v5y-fK-FDZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pI0-Qz-GaW">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="userCell" id="pI0-Qz-GaW">
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pI0-Qz-GaW" id="8Ou-M2-kzy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -545,14 +547,17 @@
                     <navigationItem key="navigationItem" id="GNe-8q-R8j">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zEL-vF-0Vj">
                             <connections>
-                                <segue destination="VZH-Pb-Whv" kind="show" id="F3w-V6-gOW"/>
+                                <action selector="addButtonPressed:" destination="4xj-ov-X8y" id="QNL-4v-dTg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="VZH-Pb-Whv" kind="show" identifier="segueUserToDetails" id="ycF-6U-QKq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tr-5X-M7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.92753623188406" y="850.44642857142856"/>
+            <point key="canvasLocation" x="148" y="850"/>
         </scene>
         <!--User Create View Controller-->
         <scene sceneID="W70-yh-aoH">
@@ -749,6 +754,7 @@
                         <viewLayoutGuide key="safeArea" id="wie-5b-fkv"/>
                     </view>
                     <connections>
+                        <outlet property="btnAdd" destination="fZs-rM-VIH" id="GEf-VK-ko5"/>
                         <outlet property="txtCategory" destination="qFX-NG-pSg" id="42C-4E-woj"/>
                         <outlet property="txtDate" destination="QPd-GF-Fgj" id="WJb-da-JXO"/>
                         <outlet property="txtDeviceId" destination="XNR-QC-YfC" id="SyV-4Y-c5R"/>

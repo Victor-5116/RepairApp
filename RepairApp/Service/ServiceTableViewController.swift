@@ -108,7 +108,7 @@ class ServiceTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceCell", for: indexPath) as! ServiceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceMenCell", for: indexPath) as! ServiceTableViewCell
         let service = serviceArray[indexPath.row]
         cell.setServices(service: service)
 
@@ -117,7 +117,7 @@ class ServiceTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.service = serviceArray[indexPath.row]
-        performSegue(withIdentifier: "segueServiceToDetails", sender: self)
+        performSegue(withIdentifier: "segueServiceMenToDetails", sender: self)
     }
     /*
     // Override to support conditional editing of the table view.

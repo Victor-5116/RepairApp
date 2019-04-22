@@ -20,14 +20,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var lblErrorMessage: UILabel!
+    @IBOutlet weak var swtUserMode: UISwitch!
     
     @IBAction func btnLoginPressed(_ sender: Any) {
         
         getLoginStatus(email: txtEmail.text!, password: txtPassword.text!) { (result) in
             self.result = result
             if result.status == 200 {
-                self.performSegue(withIdentifier: "segueLoginToService", sender: self)
-            } else{
+                if self.swtUserMode.isOn {
+                    self.performSegue(withIdentifier: "segueToUser", sender: self)
+                } else {
+                    self.performSegue(withIdentifier: "segueToServiceMen", sender: self)
+                }
+            } else {
                 self.lblErrorMessage.text = "Login Fail! Please try again."
             }
         }
@@ -38,11 +43,20 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nagVC = segue.destination as? UINavigationController
-        let serviceVC = nagVC?.viewControllers.first as! ServiceTableViewController
-        serviceVC.serviceMenId = result.id
-        serviceVC.token = result.token
-        UserDefaults.standard.set(result.token, forKey: "TOKEN")
+        if self.swtUserMode.isOn {
+            let nagVC = segue.destination as? UINavigationController
+            let serviceVC = nagVC?.viewControllers.first as! UserTableViewController
+            serviceVC.userId = result.id
+            serviceVC.token = result.token
+        } else {
+            let nagVC = segue.destination as? UINavigationController
+            let serviceVC = nagVC?.viewControllers.first as! ServiceTableViewController
+            serviceVC.serviceMenId = result.id
+            serviceVC.token = result.token
+        }
+        
+        
+        //UserDefaults.standard.set(result.token, forKey: "TOKEN")
     }
     
     override func viewDidLoad() {
@@ -54,8 +68,15 @@ class LoginViewController: UIViewController {
         
         let loginInput = ["email": email, "password": password]
         let loginInputData = try! JSONSerialization.data(withJSONObject: loginInput, options: [])
+        var urlString = ""
         
-        guard let url = URL(string: "http://3.0.10.249:3001/loginServiceMen") else {
+        if self.swtUserMode.isOn {
+            urlString = "http://3.0.10.249:3001/loginUser"
+        } else {
+            urlString = "http://3.0.10.249:3001/loginServiceMen"
+        }
+        
+        guard let url = URL(string: urlString) else {
             return
         }
         
