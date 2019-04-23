@@ -13,7 +13,7 @@ struct ServiceCreation: Decodable {
     let message: String
 }
 
-class UserCreateViewController: UIViewController {
+class UserCreateViewController: UITableViewController {
 
     var token = ""
     var service:Service!

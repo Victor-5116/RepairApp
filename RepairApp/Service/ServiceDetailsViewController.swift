@@ -86,6 +86,7 @@ class ServiceDetailsViewController: UIViewController, UIPickerViewDelegate, UIPi
             
             if result.status == 200 {
                 print("Status update successful\(result.status)")
+                self.navigationController?.popViewController(animated: true)
             } else{
                 print("Pls Try again\(result.status)")
             }

@@ -56,6 +56,13 @@ class ServiceTableViewController: UITableViewController {
             self.serviceArray = result.data
             self.tableView.reloadData()
         }
+        
+//        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
+//            self.serviceArray = result.data
+//            self.tableView.reloadData()
+//        }
+//        //tableView.reloadData()
+//        tableView.tableFooterView = UIView()
     }
     
     func getServicesByServiceMen(serviceMenId:Int, completion: @escaping((ReturnedJsonData) -> Void)) {
@@ -174,11 +181,11 @@ class ServiceTableViewController: UITableViewController {
     @IBAction func didUnwindFromServiceDetailsVC(_ sender: UIStoryboardSegue) {
         guard let detailsVC = sender.source as? ServiceDetailsViewController else { return }
         
-        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
-            self.serviceArray = result.data
-            self.tableView.reloadData()
-        }
-        //tableView.reloadData()
-        tableView.tableFooterView = UIView()
+//        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
+//            self.serviceArray = result.data
+//            self.tableView.reloadData()
+//        }
+//        //tableView.reloadData()
+//        tableView.tableFooterView = UIView()
     }
 }
