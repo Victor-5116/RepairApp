@@ -43,26 +43,13 @@ class ServiceTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
-//            self.serviceArray = result.data
-//            self.tableView.reloadData()
-//        }
-        //tableView.tableFooterView = UIView()
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         getServicesByServiceMen(serviceMenId: serviceMenId) { (result) in
             self.serviceArray = result.data
             self.tableView.reloadData()
         }
-        
-//        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
-//            self.serviceArray = result.data
-//            self.tableView.reloadData()
-//        }
-//        //tableView.reloadData()
-//        tableView.tableFooterView = UIView()
     }
     
     func getServicesByServiceMen(serviceMenId:Int, completion: @escaping((ReturnedJsonData) -> Void)) {
@@ -90,25 +77,6 @@ class ServiceTableViewController: UITableViewController {
             }
         }.resume()
     }
-    
-//    func getAllStatus() -> [String] {
-//
-//        var status:String
-//        var statusArray = [String]()
-//        for _ in serviceArray {
-//            for _ in statusArray {
-//                if(serviceArray["Status"])
-//            }
-//        }
-//
-//        return statusArray
-//    }
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serviceArray.count
@@ -126,41 +94,6 @@ class ServiceTableViewController: UITableViewController {
         self.service = serviceArray[indexPath.row]
         performSegue(withIdentifier: "segueServiceMenToDetails", sender: self)
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
@@ -170,22 +103,9 @@ class ServiceTableViewController: UITableViewController {
         let vc = segue.destination as! ServiceDetailsViewController
         vc.service = self.service
         vc.token = self.token
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return false
-    }
-
-    @IBAction func didUnwindFromServiceDetailsVC(_ sender: UIStoryboardSegue) {
-        guard let detailsVC = sender.source as? ServiceDetailsViewController else { return }
-        
-//        getServicesByServiceMen(serviceMenId: detailsVC.serviceMenId) { (result) in
-//            self.serviceArray = result.data
-//            self.tableView.reloadData()
-//        }
-//        //tableView.reloadData()
-//        tableView.tableFooterView = UIView()
     }
 }

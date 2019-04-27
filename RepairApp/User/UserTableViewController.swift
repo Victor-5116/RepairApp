@@ -12,6 +12,7 @@ class UserTableViewController: UITableViewController {
 
     var token = ""
     var userId = -1
+    var categoryArray = [Category]()
     var serviceArray = [Service]()
     var service:Service!
     
@@ -135,6 +136,7 @@ class UserTableViewController: UITableViewController {
         let vc = segue.destination as! UserCreateViewController
         vc.service = self.service
         vc.token = self.token
+        vc.categoryArray = categoryArray
     }
 
 }

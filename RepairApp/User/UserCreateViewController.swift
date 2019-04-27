@@ -13,10 +13,12 @@ struct ServiceCreation: Decodable {
     let message: String
 }
 
-class UserCreateViewController: UITableViewController {
+class UserCreateViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var token = ""
     var service:Service!
+    var categoryArray = [Category]()
+    private var categoryPicker: UIPickerView?
     
     @IBOutlet weak var txtServiceName: UITextField!
     @IBOutlet weak var txtCategory: UITextField!
@@ -80,6 +82,21 @@ class UserCreateViewController: UITableViewController {
             txtDeviceId.isEnabled = false
             btnAdd.setTitle("Update", for: .normal)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        categoryPicker = UIPickerView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
+        categoryPicker?.dataSource = self
+        categoryPicker?.delegate = self
+        txtCategory.inputView = categoryPicker
+        
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     func updateServiceStatus(serviceId: String, date: String, time: String, serviceMenId: String, completion: @escaping((ServiceCreation) -> Void)) {
@@ -148,6 +165,26 @@ class UserCreateViewController: UITableViewController {
             }.resume()
     }
 
+    // MARK: PickerView Methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //let category = categoryArray[row].name
+        txtCategory.text = categoryArray[row].name
+        view.endEditing(true)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  
+        return categoryArray[row].name
+    }
+    
     /*
     // MARK: - Navigation
 
